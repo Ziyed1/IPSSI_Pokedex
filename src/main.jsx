@@ -10,5 +10,6 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Navbar/>
+    <App/>
   </BrowserRouter>
 );
