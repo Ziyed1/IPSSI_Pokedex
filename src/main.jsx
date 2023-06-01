@@ -1,5 +1,6 @@
 import React from 'react'
 import App from './App.jsx'
+import PokemonDetails from './compenents/PokemonDetails.jsx';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-pages"
@@ -19,10 +20,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <App></App>,
       },
-      // {
-      //   path: "/:slug",
-      //   element: <PokemonDetails></PokemonDetails>,
-      // },
+        {
+          path: "/:slug",
+          element: <PokemonDetails></PokemonDetails>,
+        },
     ],
   },
 ]);

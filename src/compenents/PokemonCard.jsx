@@ -10,6 +10,7 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
+import { Link, useParams } from 'react-router-dom'
 
 export default function PokemonCard({ id, image, name }) {
   const theme = useTheme();
@@ -35,9 +36,11 @@ export default function PokemonCard({ id, image, name }) {
           </Typography>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton>
-            <CatchingPokemonIcon sx={{ height: 20, width: 20 }} />
-          </IconButton>
+          <Link to={name}>
+            <IconButton>
+              <CatchingPokemonIcon sx={{ height: 20, width: 20 }} />
+            </IconButton>
+          </Link>
           <IconButton onClick={handleHeartClick}>
             <FavoriteBorderIcon sx={{ height: 20, width: 20 }} />
           </IconButton>
