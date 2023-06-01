@@ -35,10 +35,10 @@ export default function PokemonCard({ id, image, name }) {
           </Typography>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton onClick={handleHeartClick}>
+          <IconButton>
             <CatchingPokemonIcon sx={{ height: 20, width: 20 }} />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleHeartClick}>
             <FavoriteBorderIcon sx={{ height: 20, width: 20 }} />
           </IconButton>
         </Box>
