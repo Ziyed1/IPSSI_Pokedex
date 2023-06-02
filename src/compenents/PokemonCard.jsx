@@ -13,7 +13,7 @@ import '../styles/PokemonCard.css';
 import { Link, useParams } from 'react-router-dom';
 import { WishlistContext } from '../contexts/WishListContext';
 
-export default function PokemonCard({ id, image, name, showHeartButton = true, showDeleteButton = true }) {
+export default function PokemonCard({ id, image, name, type, showHeartButton = true, showDeleteButton = true }) {
   const { wishlist, addToWishlist, removeFromWishlist, isPokemonInWishlist } = useContext(WishlistContext);
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
   const [showAlert, setShowAlert] = useState(false);
@@ -29,10 +29,38 @@ export default function PokemonCard({ id, image, name, showHeartButton = true, s
   const handleDeleteClick = () => {
     removeFromWishlist(id);
   };
-  
+
+  const cardColor = () => {
+    switch (type) {
+      case 'fire':
+        return 'card-fire';
+      case 'water':
+        return 'card-water';
+      case 'grass':
+        return 'card-grass';
+      case 'electric':
+        return 'card-electric';
+      case 'psychic':
+        return 'card-psychic';
+      case 'fighting':
+        return 'card-fighting';
+      case 'ghost':
+        return 'card-ghost';
+      case 'dragon':
+        return 'card-dragon';
+      case 'rock':
+        return 'card-rock';
+      case 'ice':
+        return 'card-ice';
+      case 'dark':
+        return 'card-dark';
+      default:
+        return 'card-default';
+    }
+  };
 
   return (
-    <Card className="pokemon-card" sx={{ display: 'flex' }}>
+    <Card className={`pokemon-card ${cardColor()}`} sx={{ display: 'flex' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">

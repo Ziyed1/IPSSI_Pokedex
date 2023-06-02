@@ -34,6 +34,7 @@ function App() {
               id={pokemonStats.id}
               name={pokemonStats.name}
               image={pokemonStats.sprites.other.home.front_default}
+              type={pokemonStats.types[0].type.name}
               showDeleteButton={false}
             />
           ))}
