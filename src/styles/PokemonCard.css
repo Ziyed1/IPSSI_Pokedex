@@ -3,11 +3,11 @@
 }
 
 .card-fire {
-  background-color: #FF6C6C !important;
+  background-color: #EE8130 !important;
 }
 
 .card-water {
-  background-color: #6CA6FF !important;
+  background-color: #6390F0 !important;
 }
 
 .card-grass {
@@ -15,37 +15,53 @@
 }
 
 .card-default {
-  background-color: #E0E0E0 !important;
+  background-color: #A8A77A !important;
 }
 
 .card-electric {
-  background-color: #FFD700 !important;
+  background-color: #F7D02C !important;
 }
 
 .card-psychic {
-  background-color: #FF1493 !important;
+  background-color: #F95587 !important;
 }
 
 .card-fighting {
-  background-color: #CD5C5C !important;
+  background-color: #C22E28 !important;
 }
 
 .card-ghost {
-  background-color: #8B008B !important;
+  background-color: #735797 !important;
 }
 
 .card-dragon {
-  background-color: #9932CC !important;
+  background-color: #6F35FC !important;
 }
 
 .card-rock {
-  background-color: #A9A9A9 !important;
+  background-color: #B6A136 !important;
 }
 
 .card-ice {
-  background-color: #00BFFF !important;
+  background-color: #96D9D6 !important;
 }
 
 .card-dark {
-  background-color: #2F4F4F !important;
+  background-color: #705746 !important;
+}
+
+.card-flying {
+  background-color: #A98FF3 !important;
+}
+
+.card-bug {
+  background-color: #A6B91A !important;
+}
+
+.card-poison {
+  background-color: #c05eee !important;
+}
+
+.card-ground {
+  background-color: #8a6433 !important;
 }

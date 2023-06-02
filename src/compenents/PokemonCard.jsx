@@ -80,6 +80,14 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
         return 'card-ice';
       case 'dark':
         return 'card-dark';
+      case 'bug':
+        return 'card-bug';
+      case 'flying':
+        return 'card-flying'
+      case 'poison':
+        return 'card-poison'
+      case 'ground':
+        return 'card-ground'
       default:
         return 'card-default';
     }
