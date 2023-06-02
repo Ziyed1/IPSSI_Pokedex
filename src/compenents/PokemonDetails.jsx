@@ -5,13 +5,13 @@ import { useQuery } from "react-query";
 
 export default function PokemonDetails() {
     const { slug }  = useParams();      
-      
+
         const { isLoading, error, data } = useQuery("pokemon", () =>
         fetch("https://pokeapi.co/api/v2/pokemon/" + slug).then((res) =>
           res.json()
         )
       );
-      
+
       if (isLoading) {
         return "Loading...";
       }
