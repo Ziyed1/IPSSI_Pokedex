@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
   }
   
   .pokemon-details {
@@ -29,7 +29,70 @@
     margin-right: 20px;
   }
   
-  .pokemon-details-section {
+  .pokemon-details-.pokemon-details-container.card-fire {
+    background-color: #EE8130 !important;
+  }
+  
+  .pokemon-details-container.card-water {
+    background-color: #6390F0 !important;
+  }
+  
+  .pokemon-details-container.card-grass {
+    background-color: #8AFF8A !important;
+  }
+  
+  .pokemon-details-container.card-default {
+    background-color: #A8A77A !important;
+  }
+  
+  .pokemon-details-container.card-electric {
+    background-color: #F7D02C !important;
+  }
+  
+  .pokemon-details-container.card-psychic {
+    background-color: #F95587 !important;
+  }
+  
+  .pokemon-details-container.card-fighting {
+    background-color: #C22E28 !important;
+  }
+  
+  .pokemon-details-container.card-ghost {
+    background-color: #735797 !important;
+  }
+  
+  .pokemon-details-container.card-dragon {
+    background-color: #6F35FC !important;
+  }
+  
+  .pokemon-details-container.card-rock {
+    background-color: #B6A136 !important;
+  }
+  
+  .pokemon-details-container.card-ice {
+    background-color: #96D9D6 !important;
+  }
+  
+  .pokemon-details-container.card-dark {
+    background-color: #705746 !important;
+  }
+  
+  .pokemon-details-container.card-flying {
+    background-color: #A98FF3 !important;
+  }
+  
+  .pokemon-details-container.card-bug {
+    background-color: #A6B91A !important;
+  }
+  
+  .pokemon-details-container.card-poison {
+    background-color: #c05eee !important;
+  }
+  
+  .pokemon-details-container.card-ground {
+    background-color: #8a6433 !important;
+  }
+  section {
     margin-top: 20px;
   }
   

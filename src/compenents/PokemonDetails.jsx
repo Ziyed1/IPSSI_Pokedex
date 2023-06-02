@@ -3,6 +3,24 @@ import '../styles/PokemonDetails.css';
 import { useParams } from 'react-router-dom'
 import { useQuery } from "react-query"
 
+const typeClassMapping = {
+  fire: 'card-fire',
+  water: 'card-water',
+  grass: 'card-grass',
+  electric: 'card-electric',
+  psychic: 'card-psychic',
+  fighting: 'card-fighting',
+  ghost: 'card-ghost',
+  dragon: 'card-dragon',
+  rock: 'card-rock',
+  ice: 'card-ice',
+  dark: 'card-dark',
+  flying: 'card-flying',
+  bug: 'card-bug',
+  poison: 'card-poison',
+  ground: 'card-ground',
+};
+
 export default function PokemonDetails() {
   const { slug } = useParams();
 
@@ -25,13 +43,15 @@ export default function PokemonDetails() {
   });
 
   const formattedName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+  const typeClassName = data.types[0].type.name; // Utilise le premier type pour déterminer la classe CSS
+  const pokemonClass = typeClassMapping[typeClassName] || 'card-default';
 
   return (
     <div className="pokemon-details-container">
-      <div className="pokemon-details">
+      <div className={`pokemon-details ${pokemonClass}`}>
         <div className="pokemon-info">
           <div className="pokemon-header">
-          <h1 className="pokemon-id">#{data.id} {formattedName}</h1>
+            <h1 className="pokemon-id">#{data.id} {formattedName}</h1>
           </div>
           <div className="pokemon-image">
             <img src={data.sprites.other.home.front_default} alt={formattedName} />
