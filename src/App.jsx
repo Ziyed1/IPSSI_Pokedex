@@ -1,6 +1,5 @@
 import PokemonCard from './compenents/PokemonCard';
 import React, { useEffect, useState } from 'react';
-import Navbar from './compenents/Navbar';
 import './styles/App.css';
 
 function App() {
@@ -28,16 +27,16 @@ function App() {
 
   return (
     <>
-      <div className="pokemon-container">
-        {allPokemons.map((pokemonStats, index) => (
-          <PokemonCard
-            key={index}
-            id={pokemonStats.id}
-            name={pokemonStats.name}
-            image={pokemonStats.sprites.other.home.front_default}
-          />
-        ))}
-      </div>
+        <div className="pokemon-container">
+          {allPokemons.map((pokemonStats, index) => (
+            <PokemonCard
+              key={index}
+              id={pokemonStats.id}
+              name={pokemonStats.name}
+              image={pokemonStats.sprites.other.home.front_default}
+            />
+          ))}
+        </div>
     </>
 
   );

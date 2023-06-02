@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-pages"
 import ReactDOM from 'react-dom/client';
+import WishLists from './compenents/WishLists.jsx';
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -19,10 +20,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <App></App>,
       },
-      // {
-      //   path: "/:slug",
-      //   element: <PokemonDetails></PokemonDetails>,
-      // },
+      {
+        path: "/wish",
+        element: <WishLists></WishLists>,
+      },
     ],
   },
 ]);

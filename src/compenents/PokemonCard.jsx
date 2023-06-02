@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
+import React, { useState,useContext } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,13 +9,16 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
+import { WishlistContext } from '../contexts/WishListContext';
+
 
 export default function PokemonCard({ id, image, name }) {
-  const theme = useTheme();
+  const { wishlist, addToWishlist, removeFromWishlist, isPokemonInWishlist } = useContext(WishlistContext);  
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
   const [showAlert, setShowAlert] = useState(false);
 
   const handleHeartClick = () => {
+    addToWishlist({ id, image, name }); // Appel de la fonction addToWishlist avec les informations du Pokémon
     setShowAlert(true);
     setTimeout(() => {
       setShowAlert(false);

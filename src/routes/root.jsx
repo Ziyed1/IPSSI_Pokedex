@@ -1,11 +1,15 @@
 import { Outlet } from "react-router-dom";
-import  Navbar  from "../compenents/Navbar"
+import Navbar from "../compenents/Navbar"
+import { WishlistProvider } from '../contexts/WishListContext';
+
 
 export default function Root() {
   return (
     <>
-      <Navbar/>
-      <Outlet />
+      <Navbar />
+      <WishlistProvider>
+        <Outlet />
+      </WishlistProvider>
     </>
   );
 }
