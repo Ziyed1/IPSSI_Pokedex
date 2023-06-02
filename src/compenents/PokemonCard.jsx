@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState,useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,34 +11,49 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
 import { Link, useParams } from 'react-router-dom';
-import { WishlistContext } from '../contexts/WishListContext';
 
-export default function PokemonCard({ id, image, name, type, showHeartButton = true, showDeleteButton = true }) {
-  const { wishlist, addToWishlist, removeFromWishlist, isPokemonInWishlist } = useContext(WishlistContext);
+export default function PokemonCard({ id, image, name, type, showHeartButton = true, showDeleteButton = true, onDelete }) {
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
-  const [showAlertError, setShowAlertError] = useState(false);
-  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
-  
+  const [alertType, setAlertType] = useState(null);
+  const [alertMessage, setAlertMessage] = useState('');
+
+  useEffect(() => {
+    let timerId;
+
+    if (alertType && alertMessage) {
+      timerId = setTimeout(() => {
+        setAlertType(null);
+        setAlertMessage('');
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [alertType, alertMessage]);
+
   const handleHeartClick = () => {
-    if (isPokemonInWishlist({ id, image, name })) {
-      // Afficher une alerte d'erreur car le Pokémon est déjà dans la wishlist
-      setShowAlertError(true);
-      setTimeout(() => {
-        setShowAlertError(false);
-      }, 5000);
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    const isPokemonInWishlist = wishlist.some(pokemon => pokemon.id === id);
+
+    if (isPokemonInWishlist) {
+      setAlertType('error');
+      setAlertMessage('Ce Pokémon est déjà dans votre wishlist !');
     } else {
-      // Ajouter le Pokémon à la wishlist
-      addToWishlist({ id, image, name });
-      // Afficher une alerte de succès
-      setShowAlertSuccess(true);
-      setTimeout(() => {
-        setShowAlertSuccess(false);
-      }, 5000);
+      const newPokemon = { id, image, name };
+      wishlist.push(newPokemon);
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+      setAlertType('success');
+      setAlertMessage(`Vous avez ajouté ${formattedName} dans votre wishlist !`);
     }
   };
 
   const handleDeleteClick = () => {
-    removeFromWishlist(id);
+    onDelete(id);
+    setAlertType('info');
+    setAlertMessage(`Vous avez supprimé ${formattedName} de votre wishlist.`);
   };
 
   const cardColor = () => {
@@ -100,32 +115,19 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
         </Box>
       </Box>
       <CardMedia component="img" sx={{ width: 151 }} image={image} />
-      {showAlertError && (
-  <Alert
-    severity="error"
-    sx={{
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      zIndex: 9999
-    }}
-  >
-    Ce Pokémon est déjà dans votre wishlist !
-  </Alert>
-)}
-{showAlertSuccess && (
-  <Alert
-    severity="success"
-    sx={{
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      zIndex: 9999
-    }}
-  >
-    Vous avez ajouté {formattedName} dans votre wishlist !
-  </Alert>
-)}
+      {alertType && (
+        <Alert
+          severity={alertType}
+          sx={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 9999
+          }}
+        >
+          {alertMessage}
+        </Alert>
+      )}
     </Card>
   );
 }

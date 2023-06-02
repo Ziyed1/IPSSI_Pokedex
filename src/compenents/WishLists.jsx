@@ -1,16 +1,25 @@
-import React, { useContext } from 'react';
-import { WishlistContext } from '../contexts/WishListContext';
+import React, { useEffect, useState } from 'react';
 import PokemonCard from './PokemonCard';
 
 function WishlistPage() {
-  const { wishlist } = useContext(WishlistContext);
-  console.log(wishlist);
+  const [storedWishlist, setStoredWishlist] = useState([]);
+
+  useEffect(() => {
+    const storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    setStoredWishlist(storedWishlist);
+  }, []);
+
+  const handleDelete = (id) => {
+    const updatedWishlist = storedWishlist.filter((pokemon) => pokemon.id !== id);
+    setStoredWishlist(updatedWishlist);
+    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+  };
 
   return (
     <>
       <h1>Ma wishlist</h1>
       <div className="pokemon-container">
-        {wishlist.map((pokemon) => (
+        {storedWishlist.map((pokemon) => (
           <PokemonCard
             key={pokemon.id}
             id={pokemon.id}
@@ -18,12 +27,11 @@ function WishlistPage() {
             image={pokemon.image}
             type={pokemon.type}
             showHeartButton={false}
-          />
-
+            onDelete={handleDelete}
+            />
         ))}
       </div>
     </>
-
   );
 }
 
