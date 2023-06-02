@@ -33,6 +33,9 @@
 }
 
 .pokemon_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 8px 2px;
 }
 
