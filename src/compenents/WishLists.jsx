@@ -15,6 +15,7 @@ function WishlistPage() {
         id={pokemon.id}
         name={pokemon.name}
         image={pokemon.image}
+        showHeartButton={false}
         />
       ))}
     </div>

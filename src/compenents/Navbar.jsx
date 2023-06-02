@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { styled, alpha } from '@mui/material/styles';
@@ -12,8 +12,7 @@ import Badge from '@mui/material/Badge';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
-
-
+import { WishlistContext } from '../contexts/WishlistContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,20 +54,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
-
 export default function Navbar() {
+  const { wishlist } = useContext(WishlistContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Link to ="/">
-          <CatchingPokemonIcon
-            size="large"
-            color="inherit"
-            sx={{ mr: 2 }}
-          />
+          <Link to="/">
+            <CatchingPokemonIcon size="large" color="inherit" sx={{ mr: 2 }} />
           </Link>
 
           <Typography
@@ -83,17 +77,13 @@ export default function Navbar() {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-
-            />
+            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Link to="/wish">
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
+              <IconButton size="large" aria-label="show wishlist" color="inherit">
+                <Badge badgeContent={wishlist.length} color="error">
                   <FavoriteBorderIcon />
                 </Badge>
               </IconButton>

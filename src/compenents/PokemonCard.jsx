@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,13 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom';
 import { WishlistContext } from '../contexts/WishListContext';
 
-export default function PokemonCard({ id, image, name }) {
-  const { wishlist, addToWishlist, removeFromWishlist, isPokemonInWishlist } = useContext(WishlistContext);  
+export default function PokemonCard({ id, image, name, showHeartButton = true, showDeleteButton = true }) {
+  const { wishlist, addToWishlist, removeFromWishlist, isPokemonInWishlist } = useContext(WishlistContext);
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -23,6 +24,10 @@ export default function PokemonCard({ id, image, name }) {
     setTimeout(() => {
       setShowAlert(false);
     }, 5000);
+  };
+
+  const handleDeleteClick = () => {
+    removeFromWishlist(id); // Appel de la fonction removeFromWishlist avec l'ID du Pokémon
   };
 
   return (
@@ -42,9 +47,16 @@ export default function PokemonCard({ id, image, name }) {
               <CatchingPokemonIcon sx={{ height: 20, width: 20 }} />
             </IconButton>
           </Link>
-          <IconButton onClick={handleHeartClick}>
-            <FavoriteBorderIcon sx={{ height: 20, width: 20 }} />
-          </IconButton>
+          {showHeartButton && (
+            <IconButton onClick={handleHeartClick}>
+              <FavoriteBorderIcon sx={{ height: 20, width: 20 }} />
+            </IconButton>
+          )}
+          {showDeleteButton && (
+            <IconButton onClick={handleDeleteClick}>
+              <DeleteIcon sx={{ height: 20, width: 20 }} />
+            </IconButton>
+          )}
         </Box>
       </Box>
       <CardMedia component="img" sx={{ width: 151 }} image={image} />
@@ -58,7 +70,7 @@ export default function PokemonCard({ id, image, name }) {
             zIndex: 9999
           }}
         >
-          Vous avez ajouté {formattedName} dans votre wishlist ! 
+          Vous avez ajouté {formattedName} dans votre wishlist !
         </Alert>
       )}
     </Card>
