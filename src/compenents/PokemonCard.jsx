@@ -19,7 +19,7 @@ export default function PokemonCard({ id, image, name, showHeartButton = true, s
   const [showAlert, setShowAlert] = useState(false);
 
   const handleHeartClick = () => {
-    addToWishlist({ id, image, name }); // Appel de la fonction addToWishlist avec les informations du Pokémon
+    addToWishlist({ id, image, name });
     setShowAlert(true);
     setTimeout(() => {
       setShowAlert(false);
@@ -27,8 +27,9 @@ export default function PokemonCard({ id, image, name, showHeartButton = true, s
   };
 
   const handleDeleteClick = () => {
-    removeFromWishlist(id); // Appel de la fonction removeFromWishlist avec l'ID du Pokémon
+    removeFromWishlist(id);
   };
+  
 
   return (
     <Card className="pokemon-card" sx={{ display: 'flex' }}>
