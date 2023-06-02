@@ -10,7 +10,7 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function PokemonCard({ id, image, name }) {
   const theme = useTheme();
