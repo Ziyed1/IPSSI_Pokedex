@@ -9,12 +9,12 @@ export const WishlistProvider = ({ children }) => {
     setWishlist((prevWishlist) => [...prevWishlist, pokemon]);
   };
 
-  const removeFromWishlist = (pokemonId) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.filter((item) => item.id !== pokemonId)
-    );
-  };
-  
+const removeFromWishlist = (pokemonId) => {
+  setWishlist((prevWishlist) =>
+    prevWishlist.filter((item) => item.id !== pokemonId)
+  );
+};
+
   const clearWishlist = () => {
     setWishlist([]);
   };

@@ -16,14 +16,25 @@ import { WishlistContext } from '../contexts/WishListContext';
 export default function PokemonCard({ id, image, name, type, showHeartButton = true, showDeleteButton = true }) {
   const { wishlist, addToWishlist, removeFromWishlist, isPokemonInWishlist } = useContext(WishlistContext);
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
-  const [showAlert, setShowAlert] = useState(false);
-
+  const [showAlertError, setShowAlertError] = useState(false);
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+  
   const handleHeartClick = () => {
-    addToWishlist({ id, image, name });
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 5000);
+    if (isPokemonInWishlist({ id, image, name })) {
+      // Afficher une alerte d'erreur car le Pokémon est déjà dans la wishlist
+      setShowAlertError(true);
+      setTimeout(() => {
+        setShowAlertError(false);
+      }, 5000);
+    } else {
+      // Ajouter le Pokémon à la wishlist
+      addToWishlist({ id, image, name });
+      // Afficher une alerte de succès
+      setShowAlertSuccess(true);
+      setTimeout(() => {
+        setShowAlertSuccess(false);
+      }, 5000);
+    }
   };
 
   const handleDeleteClick = () => {
@@ -89,19 +100,32 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
         </Box>
       </Box>
       <CardMedia component="img" sx={{ width: 151 }} image={image} />
-      {showAlert && (
-        <Alert
-          severity="success"
-          sx={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999
-          }}
-        >
-          Vous avez ajouté {formattedName} dans votre wishlist !
-        </Alert>
-      )}
+      {showAlertError && (
+  <Alert
+    severity="error"
+    sx={{
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: 9999
+    }}
+  >
+    Ce Pokémon est déjà dans votre wishlist !
+  </Alert>
+)}
+{showAlertSuccess && (
+  <Alert
+    severity="success"
+    sx={{
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: 9999
+    }}
+  >
+    Vous avez ajouté {formattedName} dans votre wishlist !
+  </Alert>
+)}
     </Card>
   );
 }

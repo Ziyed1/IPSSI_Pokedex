@@ -7,9 +7,7 @@ import ErrorPage from "./error-pages"
 import ReactDOM from 'react-dom/client';
 import WishLists from './compenents/WishLists.jsx';
 
-import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -35,7 +33,5 @@ const router = createBrowserRouter([
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
-  </QueryClientProvider>
 );
