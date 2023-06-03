@@ -3,6 +3,11 @@
     justify-content: center;
     align-items: center;
     height: 85vh;
+    margin: 2rem 15rem;
+    border-radius: 1rem;
+    background-image: url("../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   .pokemon-details {
@@ -95,6 +100,5 @@
   section {
     margin-top: 20px;
   }
-  
-  /* Ajoute les autres styles CSS nécessaires pour personnaliser
+
   
