@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         path: "/wish",
         element: <WishLists></WishLists>,
       },
+      {
+        path: "/wish/:slug",
+        element: <PokemonDetails></PokemonDetails>,
+      },
 
     ],
   },
