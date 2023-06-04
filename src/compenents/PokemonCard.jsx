@@ -44,6 +44,7 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
       const newPokemon = { id, image, name,type };
       wishlist.push(newPokemon);
       localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      window.location.reload(false);
 
       setAlertType('success');
       setAlertMessage(`Vous avez ajouté ${formattedName} dans votre wishlist !`);
@@ -52,6 +53,7 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
 
   const handleDeleteClick = () => {
     onDelete(id);
+    window.location.reload(false);
     setAlertType('error');
     setAlertMessage(`Vous avez supprimé ${formattedName} de votre wishlist.`);
   };

@@ -60,6 +60,8 @@ export default function Navbar() {
     setWishlistCount(storedWishlist.length);
   }, [JSON.parse(localStorage.getItem('wishlist'))]);
 
+ 
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
