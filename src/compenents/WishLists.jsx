@@ -16,7 +16,7 @@ function WishlistPage() {
   };
 
   return (
-    <>
+    <div className='pokemon-wishlist'>
       <h1>Ma wishlist</h1>
       <div className="pokemon-container">
         {storedWishlist.map((pokemon) => (
@@ -31,7 +31,7 @@ function WishlistPage() {
             />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

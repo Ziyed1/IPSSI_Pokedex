@@ -8,3 +8,11 @@
   width: calc(25% - 20px);
   margin: 10px;
 }
+
+.pokemon-wishlist h1 {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  
+}
+
+
