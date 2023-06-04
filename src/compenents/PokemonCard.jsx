@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,12 +10,15 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { SearchContext } from '../context/SearchContext';
 
 export default function PokemonCard({ id, image, name, type, showHeartButton = true, showDeleteButton = true, onDelete }) {
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
   const [alertType, setAlertType] = useState(null);
   const [alertMessage, setAlertMessage] = useState('');
+
+  const { searchValue } = useContext(SearchContext);
 
   useEffect(() => {
     let timerId;
@@ -41,7 +44,7 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
       setAlertType('error');
       setAlertMessage('Ce Pokémon est déjà dans votre wishlist !');
     } else {
-      const newPokemon = { id, image, name,type };
+      const newPokemon = { id, image, name, type };
       wishlist.push(newPokemon);
       localStorage.setItem('wishlist', JSON.stringify(wishlist));
       window.location.reload(false);
@@ -94,6 +97,10 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
         return 'card-default';
     }
   };
+
+  if (searchValue && !formattedName.toLowerCase().includes(searchValue.toLowerCase())) {
+    return null;
+  }
 
   return (
     <Card className={`pokemon-card ${cardColor()}`} sx={{ display: 'flex' }}>
