@@ -12,6 +12,7 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchContext } from '../context/SearchContext';
+import { WishlistCountContext } from '../context/WishlistContext'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,8 +54,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 export default function Navbar() {
-  const [wishlistCount, setWishlistCount] = useState(0);
+  const { wishlistCount, setWishlistCount } = useContext(WishlistCountContext);
   const { searchValue, setSearchValue } = useContext(SearchContext);
 
   useEffect(() => {

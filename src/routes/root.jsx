@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../compenents/Navbar";
 import { SearchProvider } from "../context/SearchContext";
+import { WishlistCountProvider } from '../context/WishlistContext'
 
 
 
@@ -8,10 +9,12 @@ import { SearchProvider } from "../context/SearchContext";
 export default function Root() {
   return (
     <>
-        <SearchProvider>
-          <Navbar />
-          <Outlet />
-        </SearchProvider>
+        <WishlistCountProvider>
+          <SearchProvider>
+            <Navbar />
+            <Outlet />
+          </SearchProvider>
+        </WishlistCountProvider>
     </>
   );
 }

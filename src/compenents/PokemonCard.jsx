@@ -12,6 +12,8 @@ import Alert from '@mui/material/Alert';
 import '../styles/PokemonCard.css';
 import { Link } from 'react-router-dom';
 import { SearchContext } from '../context/SearchContext';
+import { WishlistCountContext } from '../context/WishlistContext'
+
 
 export default function PokemonCard({ id, image, name, type, showHeartButton = true, showDeleteButton = true, onDelete }) {
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -19,6 +21,7 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
   const [alertMessage, setAlertMessage] = useState('');
 
   const { searchValue } = useContext(SearchContext);
+  const { setWishlistCount } = useContext(WishlistCountContext)
 
   useEffect(() => {
     let timerId;
@@ -40,6 +43,7 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
 
     const isPokemonInWishlist = wishlist.some(pokemon => pokemon.id === id);
 
+
     if (isPokemonInWishlist) {
       setAlertType('error');
       setAlertMessage('Ce Pokémon est déjà dans votre wishlist !');
@@ -47,7 +51,8 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
       const newPokemon = { id, image, name, type };
       wishlist.push(newPokemon);
       localStorage.setItem('wishlist', JSON.stringify(wishlist));
-      window.location.reload(false);
+
+      setWishlistCount(wishlist.length);
 
       setAlertType('success');
       setAlertMessage(`Vous avez ajouté ${formattedName} dans votre wishlist !`);
@@ -55,8 +60,10 @@ export default function PokemonCard({ id, image, name, type, showHeartButton = t
   };
 
   const handleDeleteClick = () => {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
     onDelete(id);
-    window.location.reload(false);
+    setWishlistCount(wishlist.length - 1);
     setAlertType('error');
     setAlertMessage(`Vous avez supprimé ${formattedName} de votre wishlist.`);
   };
