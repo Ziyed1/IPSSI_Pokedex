@@ -1,3 +1,7 @@
+ul {
+  list-style: none;
+}
+
 .pokemon-details-container {
     display: flex;
     justify-content: center;
@@ -5,6 +9,7 @@
     height: 85vh;
     margin: 2rem 15rem;
     border-radius: 1rem;
+    font-family: 'Roboto', sans-serif;
     background-image: url("../assets/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -101,4 +106,30 @@
     margin-top: 20px;
   }
 
+  .types {
+    display: flex;
+    gap: 2rem;
+  }
   
+  .shiny-toggle {
+    left: 14rem;
+    top: 2rem;
+    position: relative;
+    background-color: #fffffe;
+    color: #000;
+    border: 2px solid black;
+    padding: 10px 27px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+   .shiny-toggle:hover {
+    background-color: #000000;
+    color: white;
+  }
+
+   .shiny-toggle.active {
+    background-color: #4caf50;
+  }
